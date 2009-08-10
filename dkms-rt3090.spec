@@ -7,7 +7,7 @@
 Summary: dkms package for %{module} driver
 Name: dkms-%{module}
 Version: %{version}
-Release: %mkrel 1
+Release: %mkrel 2
 Source0: http://www.ralinktech.com.tw/data/drivers/%{distname}.tar.gz
 Source1: dkms-rt3090-net_device_ops.patch
 Patch0: dkms-rt3090-Makefile.patch
