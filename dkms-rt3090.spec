@@ -7,7 +7,7 @@
 Summary: dkms package for %{module} driver
 Name: dkms-%{module}
 Version: %{version}
-Release: %mkrel 2
+Release: %mkrel 3
 Source0: http://www.ralinktech.com.tw/data/drivers/%{distname}.tar.gz
 Source1: dkms-rt3090-net_device_ops.patch
 Patch0: dkms-rt3090-Makefile.patch
@@ -15,6 +15,7 @@ Patch1: dkms-rt3090-use-firmware-in-file.patch
 Patch2: dkms-rt3090-fix-rt_ioctl_siwencode-check.patch
 Patch3: dkms-rt3090-return-value-with-void.patch
 Patch4: dkms-rt3090-unexpected-format.patch
+Patch5: dkms-rt3090-radio-switch.patch
 License: GPLv2+
 Group: System/Kernel and hardware
 URL: http://www.ralinktech.com/
@@ -35,6 +36,7 @@ This package contains the %{module} driver for
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 # We don't want to ship firmware here, already provided by separated package
 # (rt3090-firmware, see also dkms-rt3090-use-firmware-in-file.patch)
