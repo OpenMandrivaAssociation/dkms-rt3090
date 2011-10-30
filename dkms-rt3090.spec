@@ -1,17 +1,17 @@
 %define module rt3090
-%define version 2.3.1.4
+%define version 2.4.0.4
 %define card Ralink RT3090 WiFi cards
 
-%define distname RT3090_LinuxSTA_V%{version}_20100222
+%define distname RT3090_LinuxSTA_V%{version}_20101217
 
 Summary: dkms package for %{module} driver
 Name: dkms-%{module}
 Version: %{version}
-Release: %mkrel 2
+Release: %mkrel 1
 Source0: http://www.ralinktech.com.tw/data/drivers/%{distname}.tar.bz2
 Patch1: dkms-rt3090-use-firmware-in-file.patch
-Patch2: dkms-rt3090-fix-rt_ioctl_siwencode-check.patch
-Patch4: dkms-rt3090-unexpected-format.patch
+Patch2: dkms-rt3090-unexpected-format.patch
+Patch3: dkms-rt3090-config-mk.patch
 License: GPLv2+
 Group: System/Kernel and hardware
 URL: http://www.ralinktech.com/
@@ -27,9 +27,7 @@ This package contains the %{module} driver for
 
 %prep
 %setup -q -n %{distname}
-%patch1 -p1
-%patch2 -p1
-%patch4 -p1
+%apply_patches
 
 # We don't want to ship firmware here, already provided by separated package
 # (rt3090-firmware, see also dkms-rt3090-use-firmware-in-file.patch)
