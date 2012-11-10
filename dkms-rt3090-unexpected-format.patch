@@ -1,0 +1,50 @@
+Use correct format specifier
+
+diff -p -up 2009_0612_RT3090_Linux_STA_V2.1.0.0_DPO/os/linux/pci_main_dev.c.orig 2009_0612_RT3090_Linux_STA_V2.1.0.0_DPO/os/linux/pci_main_dev.c
+--- 2009_0612_RT3090_Linux_STA_V2.1.0.0_DPO/os/linux/pci_main_dev.c.orig	2009-08-07 18:38:47.000000000 -0300
++++ 2009_0612_RT3090_Linux_STA_V2.1.0.0_DPO/os/linux/pci_main_dev.c	2009-08-07 18:42:35.000000000 -0300
+@@ -1099,7 +1099,7 @@ VOID RTMPrt3xSetPCIePowerLinkCtrl(
+ 
+ 	pObj = (POS_COOKIE) pAd->OS_Cookie;
+ 
+-	DBGPRINT(RT_DEBUG_INFO, ("RTMPrt3xSetPCIePowerLinkCtrl.===> %x\n", pAd->StaCfg.PSControl.word));
++	DBGPRINT(RT_DEBUG_INFO, ("RTMPrt3xSetPCIePowerLinkCtrl.===> %lx\n", pAd->StaCfg.PSControl.word));
+ 	
+ 	// Check PSControl Configuration
+ 	if (pAd->StaCfg.PSControl.field.EnableNewPS == FALSE)
+@@ -1132,7 +1132,7 @@ VOID RTMPrt3xSetPCIePowerLinkCtrl(
+ 				// Because in rt30xxForceASPMTest Mode, Force turn on L0s, L1.
+ 				// Fix HostConfiguration bit0:1 = 0x3 for later use.
+ 				HostConfiguration = 0x3;
+-				DBGPRINT(RT_DEBUG_TRACE, ("PSM : Force ASPM : Host device L1/L0s Value =  0x%x\n", HostConfiguration));
++				DBGPRINT(RT_DEBUG_TRACE, ("PSM : Force ASPM : Host device L1/L0s Value =  0x%lx\n", HostConfiguration));
+ 			}
+ 		}
+ 		else if (pAd->StaCfg.PSControl.field.rt30xxFollowHostASPM == 1)
+@@ -1144,7 +1144,7 @@ VOID RTMPrt3xSetPCIePowerLinkCtrl(
+ 	       		 PCI_REG_READ_WORD(pObj->parent_pci_dev, pAd->HostLnkCtrlOffset, HostConfiguration);
+ 				pAd->Rt3xxHostLinkCtrl = HostConfiguration;
+ 				HostConfiguration &= 0x3;
+-				DBGPRINT(RT_DEBUG_TRACE, ("PSM : Follow Host ASPM : Host device L1/L0s Value =  0x%x\n", HostConfiguration));
++				DBGPRINT(RT_DEBUG_TRACE, ("PSM : Follow Host ASPM : Host device L1/L0s Value =  0x%lx\n", HostConfiguration));
+ 			}
+ 		}
+         }
+@@ -1158,7 +1158,7 @@ VOID RTMPrt3xSetPCIePowerLinkCtrl(
+        pAd->RLnkCtrlOffset = pos + PCI_EXP_LNKCTL;
+     	pci_read_config_word(pObj->pci_dev, pAd->RLnkCtrlOffset, &reg16);
+         Configuration = le2cpu16(reg16);
+-	DBGPRINT(RT_DEBUG_TRACE, ("Read (Ralink PCIe Link Control Register) offset 0x%x = 0x%x\n", 
++	DBGPRINT(RT_DEBUG_TRACE, ("Read (Ralink PCIe Link Control Register) offset 0x%x = 0x%lx\n", 
+ 			                                    pAd->RLnkCtrlOffset, Configuration));
+ 		Configuration |= 0x100;
+ 		if ((pAd->StaCfg.PSControl.field.rt30xxFollowHostASPM == 1) 
+@@ -1185,7 +1185,7 @@ VOID RTMPrt3xSetPCIePowerLinkCtrl(
+ 		reg16 = cpu2le16(Configuration);
+ 		pci_write_config_word(pObj->pci_dev, pAd->RLnkCtrlOffset, reg16);
+ 		pAd->Rt3xxRalinkLinkCtrl = Configuration;
+-		DBGPRINT(RT_DEBUG_TRACE, ("PSM :Write Ralink device L1/L0s Value =  0x%x\n", Configuration));
++		DBGPRINT(RT_DEBUG_TRACE, ("PSM :Write Ralink device L1/L0s Value =  0x%lx\n", Configuration));
+ 	}
+ 	DBGPRINT(RT_DEBUG_INFO,("PSM :RTMPrt3xSetPCIePowerLinkCtrl <==============\n"));
+ 	
