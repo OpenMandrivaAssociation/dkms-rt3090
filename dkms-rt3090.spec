@@ -12,6 +12,7 @@ Source0: http://www.ralinktech.com.tw/data/drivers/%{distname}.tar.bz2
 Patch1: dkms-rt3090-use-firmware-in-file.patch
 Patch2: dkms-rt3090-unexpected-format.patch
 Patch3: dkms-rt3090-config-mk.patch
+Patch4:	dkms-rt3090-build.patch
 License: GPLv2+
 Group: System/Kernel and hardware
 URL: http://www.ralinktech.com/
