@@ -7,7 +7,7 @@
 Summary: dkms package for %{module} driver
 Name: dkms-%{module}
 Version: %{version}
-Release: 2
+Release: 3
 Source0: http://www.ralinktech.com.tw/data/drivers/%{distname}.tar.bz2
 Patch1: dkms-rt3090-use-firmware-in-file.patch
 Patch2: dkms-rt3090-unexpected-format.patch
