@@ -18,8 +18,7 @@ Group: System/Kernel and hardware
 URL: http://www.ralinktech.com/
 Requires(preun): dkms
 Requires(post): dkms
-Suggests: rt3090-firmware
-BuildRoot: %{_tmppath}/%{name}-%{version}
+Suggests: kernel-firmware-extra
 BuildArch: noarch
 
 %description
@@ -29,6 +28,9 @@ This package contains the %{module} driver for
 %prep
 %setup -q -n %{distname}
 %apply_patches
+
+# fix build error
+sed -i '/__TIME__/d' os/linux/sta_ioctl.c
 
 # We don't want to ship firmware here, already provided by separated package
 # (rt3090-firmware, see also dkms-rt3090-use-firmware-in-file.patch)
@@ -50,7 +52,7 @@ MAKE[0]="make LINUX_SRC=\$kernel_source_dir HAS_WPA_SUPPLICANT=y HAS_NATIVE_WPA_
 AUTOINSTALL="yes"
 EOF
 
-tar c . | tar x -C %{buildroot}/usr/src/%{module}-%{version}-%{release}/
+cp -a .  %{buildroot}/usr/src/%{module}-%{version}-%{release}/
 
 mkdir -p %{buildroot}%{_sysconfdir}/Wireless/RT2860STA
 install -m 644 RT2860STA.dat %{buildroot}%{_sysconfdir}/Wireless/RT2860STA
