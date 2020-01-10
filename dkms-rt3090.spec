@@ -27,7 +27,7 @@ This package contains the %{module} driver for
 
 %prep
 %setup -q -n %{distname}
-%apply_patches
+%autopatch -p1
 
 # fix build error
 sed -i '/__TIME__/d' os/linux/sta_ioctl.c
