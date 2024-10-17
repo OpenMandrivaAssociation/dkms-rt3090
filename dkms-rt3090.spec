@@ -15,7 +15,7 @@ Patch3: dkms-rt3090-config-mk.patch
 Patch4:	dkms-rt3090-build.patch
 License: GPLv2+
 Group: System/Kernel and hardware
-URL: http://www.ralinktech.com/
+URL: https://www.ralinktech.com/
 Requires(preun): dkms
 Requires(post): dkms
 Suggests: kernel-firmware-extra
